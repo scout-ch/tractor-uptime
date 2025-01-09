@@ -1,0 +1,20 @@
+services:
+  uptime:
+    image: louislam/uptime-kuma:1.23.16-alpine
+    restart: always
+    user: 1000:1000
+    networks:
+      - default
+      - reverse-proxy
+    volumes:
+      - uptime_data:/app/data # the path before the : can be changed
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pbs-uptime.rule=Host(`status.scout.ch`)"
+      - "traefik.http.routers.pbs-uptime.entrypoints=https"
+      - "traefik.http.services.pbs-uptime.loadbalancer.server.port=3001"
+volumes:
+  uptime_data:
+networks:
+  reverse-proxy:
+    external: true
