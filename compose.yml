@@ -1,8 +1,15 @@
 services:
   uptime:
-    image: louislam/uptime-kuma:1.23.16-alpine@sha256:f111cca721507faa0a57e1ffc75210d64c9a9ca0f8375e0336a2a9a88ae2987c
+    image: louislam/uptime-kuma:2.0.0-beta.1
     restart: always
     user: 1000:1000
+    environment:
+      - UPTIME_KUMA_DB_TYPE=mariadb
+      - UPTIME_KUMA_DB_HOSTNAME=SMTP_HOST=${DB_HOSTNAME:?}
+      - UPTIME_KUMA_DB_PORT=3306
+      - UPTIME_KUMA_DB_NAME=${DB_NAME:?}
+      - UPTIME_KUMA_DB_USERNAME=${DB_USERNAME:?}
+      - UPTIME_KUMA_DB_PASSWORD=${DB_PASSWORD:?}
     networks:
       - default
       - reverse-proxy
