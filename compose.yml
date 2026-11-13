@@ -1,6 +1,6 @@
 services:
   uptime:
-    image: louislam/uptime-kuma:2.1.0-beta.1@sha256:e690e9f4fc46bb2f24f9619c56c9d96e1d8eddd1f6563480a4b9787c582da762
+    image: louislam/uptime-kuma:2.5.11@sha256:7554dba313c84e44fee921ef3b5626ba1c711e412e82815e8c957517026112a9
     restart: always
     user: 1000:1000
     environment:
